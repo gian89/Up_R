@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>To Do List</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="https://fb.me/react-with-addons-0.14.0.js"></script>
+    <script src="https://fb.me/react-dom-0.14.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script>
+    <script type="text/babel">
+      const {Component} = React;
+      class App extends Component {
+        constructor(props) {
+          super(props)
+          this.state = {
+            lista: [],
+            inserito:'',
+            lista_li:[]
+          }
+        }
+
+
+        aggiungi(){
+          alert('stai aggiungendo ' + ingresso.value)
+          let lis = this.state.lista;
+
+          lis.push(this.state.inserito)
+          this.setState({
+            lista: lis
+          });
+          this.crealista();
+        }
+
+        insAttivita(event){
+          this.setState({
+            inserito:event.target.value
+          });
+        }
+
+        crealista(){
+          var lis1= this.state.lista
+          var lis2= []
+          for (var i = 0; i < lis1.length; i++) {
+            lis2[i]= <li value={i} onClick= {this.cancella.bind(this)} >{lis1[i]}</li>
+          }
+          this.setState({
+            lista_li:lis2
+          });
+        }
+
+        cancella(event){
+          let lis = this.state.lista;
+          lis.splice(event.target.value,1)
+          this.setState({
+            lista:lis
+          });
+          this.crealista()
+        }
+
+        render(){
+          return (
+
+            <div>
+
+            <h1>hai {this.state.lista.length} attività da svolgere stronzo</h1>
+            <ul>
+            {this.state.lista_li}
+            </ul>
+            <input id='ingresso' onChange={this.insAttivita.bind(this)} />
+            <button id='bottone' disabled={0} onClick={this.aggiungi.bind(this)}>Aggiungi</button>
+            <p>una volta aggiunta una attività cliccare su di essa per eliminarla</p>
+            </div>
+          )
+        }
+      }
+
+      ReactDOM.render(<App/>, document.getElementById('app'))
+
+
+
+    </script>
+  </body>
+</html>

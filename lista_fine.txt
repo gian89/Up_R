@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>To Do List</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="https://fb.me/react-with-addons-0.14.0.js"></script>
+    <script src="https://fb.me/react-dom-0.14.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script>
+    <script type="text/babel">
+      const {Component} = React;
+      class App extends Component {
+        constructor(props) {
+          super(props)
+          this.state = {
+            lista: [],
+            inserito:''
+          }
+        }
+
+        aggiungi(evento){
+          let lis = this.state.lista;
+          lis.push(<li>{this.state.inserito}</li>)
+          this.setState({
+            lista: lis
+          });
+        }
+
+        insAttivita(event){
+          this.setState({
+            inserito:event.target.value
+          });
+        }
+
+        render(){
+          return (
+            <div>
+            <h1>hai {this.state.lista.length} attività da svolgere</h1>
+            <ul>
+            {this.state.lista}
+            </ul>
+            <input onChange={this.insAttivita.bind(this)} />
+            <button onClick={this.aggiungi.bind(this)}>Aggiungi</button>
+            </div>
+          )
+        }
+      }
+
+      ReactDOM.render(<App/>, document.getElementById('app'))
+
+
+
+    </script>
+  </body>
+</html>

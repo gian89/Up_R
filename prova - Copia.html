@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stateless</title>
+    <meta charset="utf-8">
+    <style>
+      body, textarea {
+        font-family: Courier;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- my app renders here -->
+    </div>
+    <script src="react/build/react.js"></script>
+    <script src="react/build/react-dom.js"></script>
+    <script>
+        var Counter = React.createClass({
+            nome3: 'Counter',
+            propTypes: {
+                count: React.PropTypes.number.isRequired,
+            },
+            render: function () {
+                return React.DOM.span(null, this.props.count);
+            }
+        });
+
+
+      var duepareg = React.createClass({
+
+        propTypes: {
+          name: React.PropTypes.string.isRequired,
+          name2: React.PropTypes.string
+        },
+
+        getDefaultProps: function () {
+          return {
+            name2: 'nessuno',
+          };
+        },
+
+        getInitialState: function() {
+          return {
+            name: this.props.name,
+          };
+        },
+
+        _textChange: function (ev) {
+          this.setState({
+            name: ev.target.value,
+          });
+        },
+
+        render: function () {
+            var counter = React.DOM.h3(null,
+                React.createElement(Counter, {
+                    count: 'mo devi funzionare',
+                })
+            );
+
+
+
+            return React.DOM.div(null,
+            React.DOM.h1(null,'primo ' + this.props.name +' e pure questo'),
+            React.DOM.h1(null,'secondo ' + this.props.name2),
+            React.DOM.textarea({
+              defaultValue:this.props.name2,
+              value: this.state.name,
+              onChange: this._textChange,
+            }),
+            React.DOM.h3(null, this.state.name.length),
+                counter,
+          );
+          
+        }
+
+      });
+
+      ReactDOM.render(
+        React.createElement(duepareg,{
+          name: 'sto cazzo',
+          //name2: 'sempre sto cazzo'
+        }),
+        document.getElementById('app')
+      );
+    </script>
+  </body>
+</html>

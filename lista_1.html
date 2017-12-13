@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>To Do List</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- <div id="app2"></div> -->
+    <script src="react/build/react.js"></script>
+    <script src="react/build/react-dom.js"></script>
+    <script src="babel/browser.js"></script>
+    <script src="https://fb.me/react-with-addons-0.14.0.js"></script>
+    <script src="https://fb.me/react-dom-0.14.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script>
+    <script type="text/babel">
+      var cosedafare= [1,2];
+      const {Component} = React;
+      class App extends Component {
+        constructor(props) {
+          super(props)
+          this.state = {
+            number: cosedafare.length
+
+          }
+
+        }
+
+        aggiungi(){
+          cosedafare.push('cosa')
+        }
+
+        crealista(){
+          var lista = [];
+          for (var i = 0; i < cosedafare.length; i++) {
+            lista.push(<li>cazzo</li>)
+
+          }
+          return lista;
+        }
+
+        render(){
+          let lista2 = this.crealista();
+          return (
+            <div>
+            <h1>hai ancora da fare {this.state.number} cose</h1>
+            <ul>
+              {lista2}
+            </ul>
+            <input />
+            <button onClick={this.aggiungi}>prova</button>
+            </div>
+          )
+        }
+      }
+
+      ReactDOM.render(<App/>, document.getElementById('app'))
+
+
+
+    </script>
+  </body>
+</html>

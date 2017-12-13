@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Eventi Demo</title>
+  </head>
+  <body>
+    <div id="app1"></div>
+    <!-- <div id="app2"></div> -->
+    <script src="react/build/react.js"></script>
+    <script src="react/build/react-dom.js"></script>
+    <script src="babel/browser.js"></script>
+    <script src="https://fb.me/react-with-addons-0.14.0.js"></script>
+    <script src="https://fb.me/react-dom-0.14.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script>
+    <script type="text/babel">
+      const {Component} = React;
+
+      class App extends Component {
+        constructor(props) {
+          super(props)
+          this.state = {color: 'red',
+                        nome: 'Gianmarco',
+                        inserito: ''}
+        }
+
+
+        cambiocolore(){
+          if (this.state.color == 'red') {
+            this.setState({
+              color:'yellow'
+            });
+
+          } else {
+            this.setState({
+              color: 'red'
+            });
+          }
+
+        }
+
+        insNome(event){
+          this.setState({
+            inserito: event.target.value 
+          });
+        }
+
+        render(){
+
+          const styleObj = {
+            background: this.state.color
+          }
+            return(
+              <div style= {styleObj}>
+              <h1>CIAOOOOO</h1>
+              <h2 onClick={this.cambiocolore.bind(this)}>{this.state.nome} sei un cazzooooooo</h2>
+              <h1>{this.state.inserito}</h1>
+              <input onChange={this.insNome.bind(this)}/>
+              </div>
+            //
+            //     if(this.state.liked == 'casa'){
+            //     <div>
+            //     ciao cazzone
+            //     </div>
+            //   }else {
+            //     <div>
+            //     ciao brutto cazzone
+            //     </div>
+            //
+            // }
+
+              // if (this.state.liked) {
+              //   <div>
+              //   Mi Piace!!!!
+              //   </div>
+              // } else {
+              //   <div>
+              //   Ti Piace?
+              //   </div>
+              // }
+            )
+        }
+      };
+
+      ReactDOM.render(
+        <App/>, document.getElementById('app1')
+      );
+
+      //    var Likebutton = React.createClass(
+      //      this.state = {liked: false},
+      //   render: function () {
+      //     return <p>prova</p>
+      //   }
+      //
+      //   {
+      //     if (this.state.liked) {
+      //       return <div>
+      //       Ti Piace !!!!
+      //       </div>
+      //     } else {
+      //       return <a href='#' onClick = {this.doLike} > Mi Pieace?</a>          }
+      //   },
+      //   doLike: function () {
+      //     this.setState({liked = true})
+      //   }
+      //
+      //
+      //
+      // });
+      //
+      // ReactDOM.render(<Likebutton />, document.body);
+    </script>
+  </body>
+</html>
