@@ -16,6 +16,7 @@
           super(props)
           this.state = {
             lista: [],
+            svolte:[]
           }
         }
 
@@ -31,21 +32,23 @@
 
         }
 
-        crea_li(){
+        crea_li(lista_in){
           var lis2= []
-          for (var i = 0; i < this.state.lista.length; i++) {
-            lis2[i]= <li value={i} onClick= {this.cancella.bind(this)} >{this.state.lista[i]}</li>
+          for (var i = 0; i < lista_in.length; i++) {
+            lis2[i]= <li value={i} onClick= {this.cancella.bind(this)} >{lista_in[i]}</li>
           }
           return lis2
         }
 
         cancella(event){
+          this.state.svolte.push(this.state.lista[event.target.value])
           this.state.lista.splice(event.target.value,1)
           this.forceUpdate()
         }
 
         pulizia(){
           this.state.lista= []
+          this.state.svolte=[]
           this.forceUpdate()
         }
 
@@ -55,12 +58,20 @@
             <div >
             <h1>hai {this.state.lista.length} attività da svolgere</h1>
             <ul>
-            {this.crea_li()}
+            {this.crea_li(this.state.lista)}
             </ul>
             <input id='ingresso' />
             <button id='aggiungi'  onClick={this.aggiungi.bind(this)}>Aggiungi</button>
             <button id='pulisci' onClick={this.pulizia.bind(this)} >Reinizializza lista </button>
             <p>una volta aggiunta una attività cliccare su di essa per eliminarla</p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <h4>Ultime attività svolte</h4>
+            <ul>
+            {this.crea_li(this.state.svolte)}
+            </ul>
             </div>
           )
         }
