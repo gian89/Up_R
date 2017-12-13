@@ -16,37 +16,32 @@
           super(props)
           this.state = {
             lista: [],
-            lista_li:[]
           }
         }
 
 
         aggiungi(){
-          let lis = this.state.lista;
-
           this.state.lista.push(ingresso.value)
-          this.crealista();
+          this.forceUpdate()
           ingresso.value=''
         }
 
-
-        crealista(){
-          var lis1= this.state.lista
+        crea_li(){
           var lis2= []
           for (var i = 0; i < this.state.lista.length; i++) {
-            this.state.lista_li[i]= <li value={i} onClick= {this.cancella.bind(this)} >{this.state.lista[i]}</li>
+            lis2[i]= <li value={i} onClick= {this.cancella.bind(this)} >{this.state.lista[i]}</li>
           }
-          this.forceUpdate()
+          return lis2
         }
 
         cancella(event){
           this.state.lista.splice(event.target.value,1)
-          this.crealista()
+          this.forceUpdate()
         }
 
         pulizia(){
           this.state.lista= []
-          this.crealista()
+          this.forceUpdate()
         }
 
         render(){
@@ -56,7 +51,7 @@
 
             <h1>hai {this.state.lista.length} attività da svolgere</h1>
             <ul>
-            {this.state.lista_li}
+            {this.crea_li()}
             </ul>
             <input id='ingresso' />
             <button id='aggiungi' disabled={0} onClick={this.aggiungi.bind(this)}>Aggiungi</button>
