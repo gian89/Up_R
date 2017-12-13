@@ -21,9 +21,14 @@
 
 
         aggiungi(){
-          this.state.lista.push(ingresso.value)
-          this.forceUpdate()
-          ingresso.value=''
+          if (ingresso.value=='') {
+            alert("inserire una descrizione per l'attività")
+          } else {
+            this.state.lista.push(ingresso.value)
+            this.forceUpdate()
+            ingresso.value=''
+          }
+
         }
 
         crea_li(){
@@ -44,24 +49,22 @@
           this.forceUpdate()
         }
 
+
         render(){
           return (
-
-            <div>
-
+            <div >
             <h1>hai {this.state.lista.length} attività da svolgere</h1>
             <ul>
             {this.crea_li()}
             </ul>
             <input id='ingresso' />
-            <button id='aggiungi' disabled={0} onClick={this.aggiungi.bind(this)}>Aggiungi</button>
+            <button id='aggiungi'  onClick={this.aggiungi.bind(this)}>Aggiungi</button>
             <button id='pulisci' onClick={this.pulizia.bind(this)} >Reinizializza lista </button>
             <p>una volta aggiunta una attività cliccare su di essa per eliminarla</p>
             </div>
           )
         }
       }
-
       ReactDOM.render(<App/>, document.getElementById('app'))
 
 
